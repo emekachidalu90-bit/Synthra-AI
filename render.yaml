@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: synthra-ai
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm --workspace server run start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GROQ_API_KEY
+        sync: false
+      - key: CORS_ORIGIN
+        value: "*"
